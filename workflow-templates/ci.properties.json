@@ -1,0 +1,7 @@
+{
+  "name": "AutomatedEmpires CI",
+  "description": "Standard CI (typecheck, lint, guardrails, build, test) via the org reusable workflow.",
+  "iconName": "octicon check-circle",
+  "categories": ["Continuous integration", "TypeScript"],
+  "filePatterns": ["package.json"]
+}

@@ -1,0 +1,10 @@
+name: Reusable Release
+
+on:
+  workflow_call:
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "TODO - wire semantic-release + build provenance in the next step."

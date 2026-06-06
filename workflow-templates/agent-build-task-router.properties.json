@@ -1,0 +1,6 @@
+{
+  "name": "Agent Build Task Router",
+  "description": "Apply routing labels from the Build Task issue template when new [build] issues are opened.",
+  "iconName": "octicon workflow",
+  "categories": ["Automation"]
+}

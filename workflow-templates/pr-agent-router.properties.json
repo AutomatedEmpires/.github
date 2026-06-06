@@ -1,0 +1,6 @@
+{
+  "name": "PR Agent Router",
+  "description": "Route trusted PR comments and slash commands into agent review dispatch events.",
+  "iconName": "octicon workflow",
+  "categories": ["Automation"]
+}

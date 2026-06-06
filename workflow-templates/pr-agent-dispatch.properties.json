@@ -1,0 +1,6 @@
+{
+  "name": "PR Agent Dispatch",
+  "description": "Forward PR agent dispatch events to configured external agent webhooks.",
+  "iconName": "octicon workflow",
+  "categories": ["Automation"]
+}

@@ -1,0 +1,49 @@
+name: Reusable CI
+
+on:
+  workflow_call:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.12.4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24.16.0
+          cache: pnpm
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Typecheck
+        run: pnpm typecheck
+      - name: Lint
+        run: pnpm lint
+      - name: Lint workflows
+        run: pnpm lint:workflows
+      - name: Guardrail checks
+        run: pnpm guardrails
+      - name: Build
+        run: pnpm build
+      - name: Test
+        run: pnpm test
+
+  design-guardrails:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: G30 - single icon system
+        shell: bash
+        run: |
+          set -euo pipefail
+          pattern='from "(lucide-react|@heroicons|react-icons|@fortawesome|@mui/icons-material)"'
+          if grep -REn "$pattern" apps packages 2>/dev/null | grep -v 'packages/ui/src/icons'; then
+            echo "::error::G30 violation - use the shared icon registry only."
+            exit 1
+          fi
