@@ -2,35 +2,17 @@ name: Reusable Release
 
 on:
   workflow_call:
-    inputs:
-      node-version:
-        type: string
-        default: "24.16.0"
-      pnpm-version:
-        type: string
-        default: "10.12.4"
-      version-script:
-        type: string
-        default: "pnpm exec changeset version"
-      publish-script:
-        type: string
-        default: "pnpm exec changeset publish"
     secrets:
       NPM_TOKEN:
         required: false
 
-concurrency:
-  group: release-${{ github.ref }}
-  cancel-in-progress: false
-
-permissions:
-  contents: write
-  pull-requests: write
-  id-token: write
-
 jobs:
   release:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      id-token: write
     steps:
       - uses: actions/checkout@v4
         with:
@@ -38,11 +20,11 @@ jobs:
 
       - uses: pnpm/action-setup@v4
         with:
-          version: ${{ inputs.pnpm-version }}
+          version: 10.12.4
 
       - uses: actions/setup-node@v4
         with:
-          node-version: ${{ inputs.node-version }}
+          node-version: 24.16.0
           cache: pnpm
           registry-url: "https://registry.npmjs.org"
 
@@ -52,8 +34,8 @@ jobs:
 
       - uses: changesets/action@v1
         with:
-          version: ${{ inputs.version-script }}
-          publish: ${{ inputs.publish-script }}
+          version: pnpm exec changeset version
+          publish: pnpm exec changeset publish
           createGithubReleases: true
         env:
           GITHUB_TOKEN: ${{ github.token }}
