@@ -43,3 +43,13 @@ jobs:
             echo "::error::G30 violation - use the shared icon registry only."
             exit 1
           fi
+      - name: G22 - verified host qualifier
+        shell: bash
+        run: |
+          set -euo pipefail
+          if grep -REl 'VerifiedHostBadge' packages apps 2>/dev/null | grep -q .; then
+            if ! grep -REq 'Self-Declared' packages apps 2>/dev/null; then
+              echo "::error::G22 violation - Verified Host badge must include the 'Self-Declared by Host' qualifier."
+              exit 1
+            fi
+          fi
