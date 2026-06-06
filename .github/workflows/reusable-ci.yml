@@ -22,13 +22,13 @@ jobs:
       - name: Lint
         run: pnpm lint
       - name: Lint workflows
-        run: pnpm run lint:workflows --if-present
+        run: pnpm run --if-present lint:workflows
       - name: Guardrail checks
-        run: pnpm run guardrails --if-present
+        run: pnpm run --if-present guardrails
       - name: Build
         run: pnpm build
       - name: Test
-        run: pnpm run test --if-present
+        run: pnpm run --if-present test
 
   design-guardrails:
     runs-on: ubuntu-latest
