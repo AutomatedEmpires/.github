@@ -45,7 +45,8 @@ jobs:
 
             const recordRequest = (rawAgent, source, prompt = '') => {
               const agent = normalizeAgent(rawAgent);
-              if (!['copilot', 'codex', 'claude', 'sentry', 'git'].includes(agent)) {
+              // Codex is retired. Claude is routed by dedicated Claude workflows where installed.
+              if (!['copilot', 'sentry', 'git'].includes(agent)) {
                 return;
               }
 
@@ -66,7 +67,7 @@ jobs:
               });
             };
 
-            const mentionAgents = ['copilot', 'codex', 'claude', 'sentry'];
+            const mentionAgents = ['copilot', 'sentry'];
             for (const agent of mentionAgents) {
               const mentionPattern = new RegExp(`(^|\\s)@${agent}\\b`, 'im');
               if (mentionPattern.test(commentBody)) {
@@ -79,8 +80,8 @@ jobs:
             }
 
             const lineCommands = [
-              /(?:^|\n)\s*\/agent\s+(copilot|codex|claude|sentry|git(?:-agent)?)(?:\s+(.+))?$/gim,
-              /(?:^|\n)\s*\/review\s+(copilot|codex|claude|sentry|git(?:-agent)?)(?:\s+(.+))?$/gim,
+              /(?:^|\n)\s*\/agent\s+(copilot|sentry|git(?:-agent)?)(?:\s+(.+))?$/gim,
+              /(?:^|\n)\s*\/review\s+(copilot|sentry|git(?:-agent)?)(?:\s+(.+))?$/gim,
               /(?:^|\n)\s*\/git-agent(?:\s+(.+))?$/gim,
             ];
 
@@ -97,7 +98,7 @@ jobs:
             }
 
             if (requests.size === 0) {
-              core.info('No PR agent commands or mentions detected.');
+              core.info('No supported PR agent commands or mentions detected.');
               return;
             }
 

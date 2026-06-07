@@ -15,8 +15,8 @@ area:ui
      area:agent-governance -->
 
 ## Suggested agent
-agent:codex
-<!-- one of: agent:vscode, agent:codex, agent:cursor, agent:claude, agent:opus -->
+agent:claude
+<!-- one of: agent:vscode, agent:cursor, agent:claude, agent:opus, agent:copilot-cloud -->
 
 ## Risk level
 risk:low
@@ -25,5 +25,11 @@ risk:low
 ## Acceptance criteria
 - [ ] ...
 - [ ] ...
+
+## Verification expected
+- [ ] typecheck
+- [ ] lint
+- [ ] build
+- [ ] tests / smoke as applicable
 
 ## Notes / links
