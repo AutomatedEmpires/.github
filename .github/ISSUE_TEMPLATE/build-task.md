@@ -15,8 +15,8 @@ area:ui
      area:agent-governance -->
 
 ## Suggested agent
-agent:codex
-<!-- one of: agent:vscode, agent:codex, agent:cursor, agent:claude, agent:opus -->
+agent:claude
+<!-- one of: agent:vscode, agent:cursor, agent:claude, agent:opus -->
 
 ## Risk level
 risk:low

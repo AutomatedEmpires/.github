@@ -21,7 +21,7 @@ Repo-level AGENTS.md files may extend, but not loosen, these rules.
 - File a build task as a GitHub Issue titled `[build] ...` using the Build Task template.
 - Fill `## Area`, `## Suggested agent`, `## Risk level` with one allowed label each.
 - The agent-build-task-router applies labels automatically.
-- On PRs, trigger agents via comment: `@codex`, `@claude`, `@sentry`, `@copilot`,
+- On PRs, trigger agents via comment: `@claude`, `@sentry`, `@copilot`,
   or `/agent <name> <prompt>`, `/review <name>`, `/git-agent <prompt>`.
 - Only OWNER/MEMBER/COLLABORATOR comments are honored.
 

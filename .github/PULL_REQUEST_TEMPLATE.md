@@ -17,4 +17,4 @@ Closes #
 - [ ] No secrets in code, logs, or fixtures
 
 ## Agent assist (optional)
-<!-- @codex  @claude  @sentry  @copilot  /agent <name> <prompt>  /git-agent <prompt> -->
+<!-- @claude  @sentry  @copilot  /agent <name> <prompt>  /git-agent <prompt> -->
