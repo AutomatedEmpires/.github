@@ -16,14 +16,12 @@ jobs:
       - name: Forward the PR agent request to the configured webhook
         uses: actions/github-script@91a83c091797b22c5771b1d7178fd0fddacc73ea
         env:
-          CODEX_AGENT_WEBHOOK_URL: ${{ secrets.CODEX_AGENT_WEBHOOK_URL }}
-          CODEX_AGENT_WEBHOOK_TOKEN: ${{ secrets.CODEX_AGENT_WEBHOOK_TOKEN }}
-          CLAUDE_AGENT_WEBHOOK_URL: ${{ secrets.CLAUDE_AGENT_WEBHOOK_URL }}
-          CLAUDE_AGENT_WEBHOOK_TOKEN: ${{ secrets.CLAUDE_AGENT_WEBHOOK_TOKEN }}
-          SENTRY_AGENT_WEBHOOK_URL: ${{ secrets.SENTRY_AGENT_WEBHOOK_URL }}
-          SENTRY_AGENT_WEBHOOK_TOKEN: ${{ secrets.SENTRY_AGENT_WEBHOOK_TOKEN }}
-          GIT_AGENT_WEBHOOK_URL: ${{ secrets.GIT_AGENT_WEBHOOK_URL }}
-          GIT_AGENT_WEBHOOK_TOKEN: ${{ secrets.GIT_AGENT_WEBHOOK_TOKEN }}
+          CLAUDE_AGENT_WEBHOOK_URL: $ secrets.CLAUDE_AGENT_WEBHOOK_URL 
+          CLAUDE_AGENT_WEBHOOK_TOKEN: $ secrets.CLAUDE_AGENT_WEBHOOK_TOKEN 
+          SENTRY_AGENT_WEBHOOK_URL: $ secrets.SENTRY_AGENT_WEBHOOK_URL 
+          SENTRY_AGENT_WEBHOOK_TOKEN: $ secrets.SENTRY_AGENT_WEBHOOK_TOKEN 
+          GIT_AGENT_WEBHOOK_URL: $ secrets.GIT_AGENT_WEBHOOK_URL 
+          GIT_AGENT_WEBHOOK_TOKEN: $ secrets.GIT_AGENT_WEBHOOK_TOKEN 
         with:
           script: |
             const payload = context.payload.client_payload || {};
@@ -32,12 +30,6 @@ jobs:
             const pullRequestNumber = Number(payload.pr_number);
 
             const routes = {
-              codex: {
-                label: 'Codex',
-                secretNames: ['CODEX_AGENT_WEBHOOK_URL', 'CODEX_AGENT_WEBHOOK_TOKEN'],
-                url: process.env.CODEX_AGENT_WEBHOOK_URL,
-                token: process.env.CODEX_AGENT_WEBHOOK_TOKEN,
-              },
               claude: {
                 label: 'Claude',
                 secretNames: ['CLAUDE_AGENT_WEBHOOK_URL', 'CLAUDE_AGENT_WEBHOOK_TOKEN'],
