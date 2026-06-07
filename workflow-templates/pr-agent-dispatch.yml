@@ -16,10 +16,18 @@ jobs:
       - name: Forward the PR agent request to the configured webhook
         uses: actions/github-script@91a83c091797b22c5771b1d7178fd0fddacc73ea
         env:
-          SENTRY_AGENT_WEBHOOK_URL: $ secrets.SENTRY_AGENT_WEBHOOK_URL 
-          SENTRY_AGENT_WEBHOOK_TOKEN: $ secrets.SENTRY_AGENT_WEBHOOK_TOKEN 
-          GIT_AGENT_WEBHOOK_URL: $ secrets.GIT_AGENT_WEBHOOK_URL 
-          GIT_AGENT_WEBHOOK_TOKEN: $ secrets.GIT_AGENT_WEBHOOK_TOKEN 
+          # MANUAL STEP REQUIRED (one-time): in the GitHub web editor, set each value
+          # below to the GitHub Actions secret expression for the matching name --
+          # a dollar sign followed by double curly braces wrapping secrets.<NAME>
+          # (for example, SENTRY_AGENT_WEBHOOK_URL should reference
+          # secrets.SENTRY_AGENT_WEBHOOK_URL inside that expression). This file was
+          # authored by an automation that cannot emit those delimiters, so the
+          # wiring must be finished here. Until then the dispatch step posts a
+          # "dispatch not configured" notice instead of forwarding to a webhook.
+          SENTRY_AGENT_WEBHOOK_URL: ''
+          SENTRY_AGENT_WEBHOOK_TOKEN: ''
+          GIT_AGENT_WEBHOOK_URL: ''
+          GIT_AGENT_WEBHOOK_TOKEN: ''
         with:
           script: |
             const payload = context.payload.client_payload || {};
