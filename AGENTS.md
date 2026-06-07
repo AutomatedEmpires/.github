@@ -3,6 +3,16 @@
 This file sets the baseline rules for every AI agent working in this org.
 Repo-level AGENTS.md files may extend, but not loosen, these rules.
 
+## Doctrine
+
+- Notion decides and builds. GitHub reviews and ships. Figma shows. Everything else runs.
+- Notion is product truth. Repositories implement and ship that canon.
+
+## Machine reality
+
+- Windows 11 ARM64 (Snapdragon X Elite) → WSL2 Ubuntu 24.04 → VS Code
+- 16 GB RAM. One heavy task at a time. No parallel installs/builds/watchers.
+
 ## Stack (the golden path)
 
 - TypeScript, Next.js (App Router), Turborepo
@@ -15,6 +25,18 @@ Repo-level AGENTS.md files may extend, but not loosen, these rules.
 
 - Node 24.16.0 · pnpm 10.12.4
 - Commit lockfiles. CI installs with --frozen-lockfile.
+
+## Locked providers
+
+- Auth: Clerk
+- Maps: Mapbox
+- Secrets: Doppler
+- Hosting: Vercel
+- Analytics: PostHog
+- Errors: Sentry
+- Media: Cloudinary
+- Email: Resend
+- Icons: Streamline
 
 ## How work is routed
 
@@ -33,6 +55,7 @@ Repo-level AGENTS.md files may extend, but not loosen, these rules.
 
 ## Hard rules
 
+- Never push straight to main. Work on feature branches, open small PRs, request review, and do not self-merge.
 - Never weaken RLS or expose secrets in code or logs.
 - Never merge with red CI. Never bypass branch protection.
 - Database migrations follow expand/contract; never additive + destructive in one release.
